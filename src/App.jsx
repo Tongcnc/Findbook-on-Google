@@ -49,7 +49,33 @@ function App() {
       </div>
       <ul>
         {display.map((book, index) => (
-          <li key={index}>{book.volumeInfo.title}</li>
+          <div key={index} className="list-item">
+            <li className="title">{book.volumeInfo.title}</li>
+            {/* <div className="line-container">
+              <div className="line"></div>
+              <div className="line"></div>
+            </div> */}
+
+            <p className="insideBook"> Author: </p>
+            <li className="insideBook"> {book.volumeInfo.authors}</li>
+            <p className="insideBook">Published Date:</p>
+            <li className="insideBook">{book.volumeInfo.publishedDate}</li>
+            <li className="insideBook"> Page: {book.volumeInfo.pageCount}</li>
+            <li className="insideBook">
+              Buy Link:{"  "}
+              <a href={book.saleInfo.buyLink} target="_blank">
+                Link
+              </a>
+            </li>
+            {/* <li className="insideBook">
+              <img
+                src={book.volumeInfo.imageLinks.smallThumbnail}
+                width="50px"
+                height="80px"
+                alt="Book Thumbnail"
+              />
+            </li> */}
+          </div>
         ))}
       </ul>
     </div>
