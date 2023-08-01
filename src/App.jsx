@@ -1,35 +1,59 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState, useEffect } from "react";
+import { DebounceInput } from "react-debounce-input";
+import axios, { Axios } from "axios";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [display, setDisplayText] = useState([]);
+  const [inputText, setInputText] = useState("");
+
+  const searchBooks = async (input) => {
+    try {
+      const response = await axios.get(
+        `https://www.googleapis.com/books/v1/volumes?q=${input}`
+      );
+      console.log(response);
+      setDisplayText(response.data.items);
+    } catch (error) {
+      console.error("Sorry can't find the book :-(");
+    }
+  };
+
+  const handlerText = (e) => {
+    setInputText(e.target.value);
+    searchBooks(e.target.value);
+  };
+
+  const clearText = () => {
+    setInputText("");
+    setDisplayText([]);
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+    <div className="App">
+      <h1 className="app-title">Find a Book &#128064;</h1>
+      <div className="message-input-container">
+        <DebounceInput
+          id="message-text"
+          name="message-text"
+          type="text"
+          placeholder="Let's me help you"
+          value={inputText}
+          minLength={2}
+          debounceTimeout={500}
+          onChange={handlerText}
+        />
+        <button className="clear" onClick={clearText}>
+          &#8634;
         </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+      <ul>
+        {display.map((book, index) => (
+          <li key={index}>{book.volumeInfo.title}</li>
+        ))}
+      </ul>
+    </div>
+  );
 }
 
-export default App
+export default App;
