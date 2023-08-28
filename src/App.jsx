@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { DebounceInput } from "react-debounce-input";
-import axios, { Axios } from "axios";
+import axios from "axios";
 import "./App.css";
 
 function App() {
@@ -50,31 +50,55 @@ function App() {
       <ul>
         {display.map((book, index) => (
           <div key={index} className="list-item">
-            <li className="title">{book.volumeInfo.title}</li>
-            {/* <div className="line-container">
+            <li className="coverBook">{book.volumeInfo.title.slice(0, 25)}</li>
+            <div className="line-container">
               <div className="line"></div>
               <div className="line"></div>
-            </div> */}
-
-            <p className="insideBook"> Author: </p>
-            <li className="insideBook"> {book.volumeInfo.authors}</li>
-            <p className="insideBook">Published Date:</p>
-            <li className="insideBook">{book.volumeInfo.publishedDate}</li>
-            <li className="insideBook"> Page: {book.volumeInfo.pageCount}</li>
+            </div>
             <li className="insideBook">
-              Buy Link:{"  "}
-              <a href={book.saleInfo.buyLink} target="_blank">
-                Link
-              </a>
-            </li>
-            {/* <li className="insideBook">
               <img
                 src={book.volumeInfo.imageLinks.smallThumbnail}
-                width="50px"
-                height="80px"
+                width="100px"
+                height="100px"
+                id="book-image"
                 alt="Book Thumbnail"
               />
-            </li> */}
+            </li>
+            <div className="bookDown">
+              <li className="insideBook">
+                <h3> {book.volumeInfo.title.slice(0, 25)}</h3>
+              </li>
+              <div className="insideBook" id="container">
+                <li className="insideBook box" id="icon">
+                  <a
+                    href={book.saleInfo.buyLink}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <img
+                      src="https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../releases/preview/2018/png/iconmonstr-link-thin.png&r=255&g=255&b=255"
+                      alt="link-icon"
+                      width="5px"
+                      height="5px"
+                    />
+                  </a>
+                </li>
+                <li className="insideBook box">
+                  {book.volumeInfo.categories
+                    ? book.volumeInfo.categories
+                    : "none"}
+                </li>
+                <li className="insideBook box"> {book.volumeInfo.language}</li>
+              </div>
+              <li className="insideBook" id="description">
+                {book.volumeInfo.description.slice(0, 80)}...
+              </li>
+              <li className="insideBook" id="authors">
+                <span className="typing-text">
+                  by {book.volumeInfo.authors[0]}
+                </span>
+              </li>
+            </div>
           </div>
         ))}
       </ul>
