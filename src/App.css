@@ -83,6 +83,14 @@ input {
   font-family: "Montserrat Alternates", sans-serif, "Noto Sans Thai", sans-serif;
 }
 
+/* Loding and No books found */
+.status {
+  font-size: 2rem;
+  animation: shake 0.8s reverse;
+  color: var(--secondary-color);
+}
+
+/* CARD BOOK LIST */
 ul {
   display: grid;
   grid-template-columns: repeat(4, 200px);
@@ -91,7 +99,6 @@ ul {
   list-style: none;
 }
 
-/* CARD BOOK LIST */
 .list-item {
   border-radius: 5px 10px 10px 5px;
   background: linear-gradient(60deg, #60ab9a, #c9b79c);
@@ -103,6 +110,7 @@ ul {
   overflow: hidden;
 }
 
+/* COVER BOOK */
 .coverBook {
   color: var(--secondary-color);
   font-weight: 600;
@@ -114,131 +122,6 @@ ul {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-}
-
-.list-item:hover .insideBook {
-  font-size: 10px;
-  display: flex;
-  margin-bottom: 5px;
-  transform: rotate3d(0, 1, 0, 180deg);
-}
-
-.insideBook {
-  display: none;
-}
-
-.list-item:hover .coverBook {
-  display: none;
-}
-
-h3 {
-  color: var(--primary-color);
-  margin-top: 15px;
-}
-
-#description {
-  font-size: 8px;
-}
-
-#icon:hover {
-  animation: pulse 0.8s infinite;
-}
-
-@keyframes bounce {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-#book-image {
-  border-radius: 50%;
-  border: 4px solid var(--highlight-color);
-  align-self: center;
-  animation: bounce 3s infinite;
-  position: relative;
-  top: 25px;
-  left: 50px;
-  z-index: 99;
-}
-
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.1);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-ul:hover .list-item {
-  filter: blur(5px);
-  transition: 0.8s;
-}
-
-ul .list-item:hover {
-  background: var(--secondary-color);
-  color: var(--dark-color);
-  box-shadow: -180px 0px 0px rgb(241, 241, 241), 10px 5px 0px var(--main-shadow),
-    -190px 5px 0px var(--main-shadow);
-  transform: rotateY(180deg) scale(2);
-  filter: blur(0px);
-  transition: 0.8s;
-  z-index: 99;
-}
-
-.list-item:hover .box {
-  background: var(--highlight-color);
-  border-radius: 10px;
-  padding: 2px 8px;
-  display: inline-block;
-  color: var(--secondary-color);
-  font-size: 6px;
-  margin: 2px;
-}
-
-.list-item:hover #authors {
-  border: 2px solid var(--primary-color);
-  padding: 4px;
-  border-radius: 10px;
-  display: inline-block;
-  font-size: 10px;
-}
-
-.typing-text {
-  display: inline-block;
-  white-space: nowrap;
-  overflow: hidden;
-  width: 0;
-  animation: typing 2.5s steps(30) infinite alternate-reverse;
-}
-
-@keyframes typing {
-  frame {
-    width: 0;
-  }
-  to {
-    width: 100%;
-  }
-}
-
-.list-item:hover #container {
-  transform: rotate3d(0, 1, 0, 0deg);
-}
-
-.list-item:hover .bookDown {
-  display: flex;
-  flex-direction: column;
-  padding: 15px;
-  border-radius: 15px 15px 15px 0px;
-  background-color: var(--secondary-color);
-  box-shadow: 0px -5px 20px var(--black-shadow);
 }
 
 .list-item:hover .line-container {
@@ -260,4 +143,149 @@ ul .list-item:hover {
   width: 125px;
   border-radius: 1.5px;
   background-color: var(--secondary-color);
+}
+
+.list-item:hover .coverBook {
+  display: none;
+}
+
+/* INSIDE BOOK */
+.insideBook {
+  display: none;
+}
+
+.list-item:hover .insideBook {
+  font-size: 8px;
+  display: flex;
+  margin-bottom: 5px;
+  transform: rotate3d(0, 1, 0, 180deg);
+}
+
+.list-item:hover .bookDown {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  border-radius: 15px 15px 15px 0px;
+  background-color: var(--secondary-color);
+  box-shadow: 0px -5px 20px var(--black-shadow);
+}
+
+#book-image {
+  border-radius: 50%;
+  border: 4px solid var(--highlight-color);
+  align-self: center;
+  animation: bounce 3s infinite;
+  position: relative;
+  top: 25px;
+  left: 50px;
+  z-index: 99;
+}
+
+h3 {
+  color: var(--primary-color);
+  font-size: 12px;
+  margin-top: 15px;
+}
+
+.list-item:hover #container {
+  transform: rotate3d(0, 1, 0, 0deg);
+}
+
+.list-item:hover .box {
+  background: var(--highlight-color);
+  border-radius: 10px;
+  padding: 2px 8px;
+  display: inline-block;
+  color: var(--secondary-color);
+  font-size: 6px;
+  margin: 2px;
+}
+
+#icon:hover {
+  animation: pulse 0.8s infinite;
+}
+
+.list-item:hover #authors {
+  border: 2px solid var(--primary-color);
+  padding: 4px;
+  border-radius: 10px;
+  display: inline-block;
+  font-size: 10px;
+}
+
+.typing-text {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+  animation: typing 2.5s steps(30) infinite alternate-reverse;
+}
+
+ul:hover .list-item {
+  filter: blur(5px);
+  transition: 0.8s;
+}
+
+ul .list-item:hover {
+  background: var(--secondary-color);
+  color: var(--dark-color);
+  box-shadow: -180px 0px 0px rgb(241, 241, 241),
+    5px 3px 0px rgba(241, 241, 241, 0.9),
+    -185px 3px 0px rgba(241, 241, 241, 0.9), 10px 6px 0px var(--main-shadow),
+    -190px 6px 0px var(--main-shadow);
+  transform: rotateY(180deg) scale(2);
+  filter: blur(0px);
+  transition: 0.8s;
+  z-index: 99;
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-10px);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(10px);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes typing {
+  frame {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
 }
