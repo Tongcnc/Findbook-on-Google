@@ -4,6 +4,9 @@ import "./App.css";
 import SearchBar from "./components/SearchBar";
 import BookItem from "./components/BookItem";
 import PaginationButton from "./components/PaginationButtton";
+import "./components/Pagination.css";
+import "./components/SearchBar.css";
+import "./components/BookItem.css";
 
 function App() {
   const [display, setDisplayText] = useState([]);
@@ -32,7 +35,6 @@ function App() {
     } catch (error) {
       console.error("An error occurred while fetching data:", error);
       setDisplayText([]);
-      setTotalPages(1); // reset page to 1
       setLoading(false);
     }
   };
@@ -45,12 +47,29 @@ function App() {
   const clearText = () => {
     setInputText("");
     setDisplayText([]);
+    setTotalPages("");
   };
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
     setPageLoading(true);
     searchBooks(inputText);
+  };
+
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+      setPageLoading(true);
+      searchBooks(inputText);
+    }
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+      setPageLoading(true);
+      searchBooks(inputText);
+    }
   };
 
   useEffect(() => {
@@ -73,6 +92,7 @@ function App() {
       <SearchBar value={inputText} onChange={handlerText} onClear={clearText} />
       {/* Pagination */}
       <div className="pagination">
+        <button onClick={handlePrevPage}>&lt;</button>
         {Array.from({ length: Math.min(totalPages, 10) }, (_, i) => (
           <PaginationButton
             key={i}
@@ -81,12 +101,13 @@ function App() {
             onClick={handlePageChange}
           />
         ))}
+        <button onClick={handleNextPage}>&gt;</button>
       </div>
       {/* Status */}
       {loading ? (
-        <p className="status">Loading...</p>
+        <p className="status-load">Loading...</p>
       ) : display.length === 0 ? (
-        <p className="status">No books found.</p>
+        <p className="status-no">No books found.</p>
       ) : (
         // Map Book Items
         <ul>

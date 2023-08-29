@@ -19,7 +19,7 @@
 }
 
 body {
-  padding: 80px;
+  padding: 60px;
   background-image: url(https://daviddoran.co.uk/content/uploads/2022/04/Sommerro_DavidDoran_Artwork_2_1800px.jpg.webp);
   background-size: 100%;
   font-family: "Montserrat Alternates", sans-serif, "Noto Sans Thai", sans-serif;
@@ -39,228 +39,17 @@ h1 {
   font-size: 4rem;
 }
 
-.message-input-container {
-  display: flex;
-  gap: 15px;
-  margin-top: 30px;
-  margin-bottom: 50px;
-  background-color: var(--secondary-color);
-  padding: 5px;
-  border-radius: 25px;
-  transition: 0.4s;
-}
-
-.clear {
-  color: var(--primary-color);
-  background-color: var(--secondary-color);
-  border: none;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  font-size: var(--text-large-size);
-  box-shadow: 2px 2px 20px var(--black-shadow);
-  transition: 0.8s;
-  padding: 0px;
-}
-
-.clear:hover {
-  background-color: var(--primary-color);
-  color: var(--secondary-color);
-  transform: rotate(180deg);
-  cursor: pointer;
-}
-
-input {
-  width: 600px;
-  border-radius: 20px;
-  border: none;
-  font-size: var(--text-large-size);
-  text-align: center;
-  caret-color: var(--highlight-color);
-  color: var(--dark-color);
-  box-shadow: 2px 2px 20px var(--black-shadow);
-  font-family: "Montserrat Alternates", sans-serif, "Noto Sans Thai", sans-serif;
-}
-
 /* Loding and No books found */
-.status {
+.status-no {
   font-size: 2rem;
   animation: shake 0.8s reverse;
   color: var(--secondary-color);
 }
 
-/* CARD BOOK LIST */
-ul {
-  display: grid;
-  grid-template-columns: repeat(4, 200px);
-  grid-template-rows: repeat(4, 250px);
-  grid-gap: 40px;
-  list-style: none;
-}
-
-.list-item {
-  border-radius: 5px 10px 10px 5px;
-  background: linear-gradient(60deg, #60ab9a, #c9b79c);
-  background-size: cover;
-  box-shadow: 10px 15px 0px rgba(248, 249, 250, 1),
-    15px 20px 0px var(--main-shadow);
-  transition: 0.4s;
-  position: relative;
-  overflow: hidden;
-}
-
-/* COVER BOOK */
-.coverBook {
+.status-load {
+  font-size: 2rem;
+  animation: bounce 0.5s;
   color: var(--secondary-color);
-  font-weight: 600;
-  padding: 25px;
-  border-radius: 5px;
-  text-align: center;
-  font-size: var(--text-large-size);
-  line-height: 1.6;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-}
-
-.list-item:hover .line-container {
-  display: none;
-}
-
-.line-container {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  position: absolute;
-  z-index: 90;
-  top: 180px;
-  left: 35px;
-}
-
-.line {
-  height: 1.5px;
-  width: 125px;
-  border-radius: 1.5px;
-  background-color: var(--secondary-color);
-}
-
-.list-item:hover .coverBook {
-  display: none;
-}
-
-/* INSIDE BOOK */
-.insideBook {
-  display: none;
-}
-
-.list-item:hover .insideBook {
-  font-size: 8px;
-  display: flex;
-  margin-bottom: 5px;
-  transform: rotate3d(0, 1, 0, 180deg);
-}
-
-.list-item:hover .bookDown {
-  display: flex;
-  flex-direction: column;
-  padding: 15px;
-  border-radius: 15px 15px 15px 0px;
-  background-color: var(--secondary-color);
-  box-shadow: 0px -5px 20px var(--black-shadow);
-}
-
-#book-image {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  border: 4px solid var(--highlight-color);
-  align-self: center;
-  animation: bounce 3s infinite;
-  position: relative;
-  top: 25px;
-  left: 50px;
-  z-index: 99;
-}
-
-h3 {
-  color: var(--primary-color);
-  font-size: 10px;
-  margin-top: 15px;
-}
-
-.list-item:hover #container {
-  transform: rotate3d(0, 1, 0, 0deg);
-}
-
-.list-item:hover .box {
-  background: var(--highlight-color);
-  border-radius: 10px;
-  padding: 2px 8px;
-  display: inline-block;
-  color: var(--secondary-color);
-  font-size: 6px;
-  margin: 2px;
-}
-
-#icon:hover {
-  animation: pulse 0.8s infinite;
-}
-
-.list-item:hover #authors {
-  border: 2px solid var(--primary-color);
-  padding: 4px;
-  border-radius: 10px;
-  display: inline-block;
-  font-size: 10px;
-}
-
-.typing-text {
-  display: inline-block;
-  white-space: nowrap;
-  overflow: hidden;
-  width: 0;
-  animation: typing 2.5s steps(30) infinite alternate-reverse;
-}
-
-ul:hover .list-item {
-  filter: blur(5px);
-  transition: 0.8s;
-}
-
-ul .list-item:hover {
-  background: var(--secondary-color);
-  color: var(--dark-color);
-  box-shadow: -180px 0px 0px rgb(241, 241, 241),
-    5px 3px 0px rgba(241, 241, 241, 0.9),
-    -185px 3px 0px rgba(241, 241, 241, 0.9), 10px 6px 0px var(--main-shadow),
-    -190px 6px 0px var(--main-shadow);
-  transform: rotateY(180deg) scale(2);
-  filter: blur(0px);
-  transition: 0.8s;
-  z-index: 99;
-}
-
-/* Pagination */
-.pagination {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-}
-
-.pagination button {
-  background: var(--primary-color);
-  color: white;
-  border: none;
-  margin: 0 5px;
-  padding: 5px 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-.pagination button.active {
-  background: var(--secondary-color);
-  color: var(--primary-color);
 }
 
 @keyframes shake {
@@ -280,36 +69,5 @@ ul .list-item:hover {
   60%,
   80% {
     transform: translateX(10px);
-  }
-}
-
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.1);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-@keyframes bounce {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-@keyframes typing {
-  frame {
-    width: 0;
-  }
-  to {
-    width: 100%;
   }
 }

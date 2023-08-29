@@ -1,0 +1,41 @@
+.message-input-container {
+  display: flex;
+  gap: 15px;
+  margin-top: 30px;
+  background-color: var(--secondary-color);
+  padding: 5px;
+  border-radius: 25px;
+  transition: 0.4s;
+}
+
+.clear {
+  color: var(--primary-color);
+  background-color: var(--secondary-color);
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: var(--text-large-size);
+  box-shadow: 2px 2px 20px var(--black-shadow);
+  transition: 0.8s;
+  padding: 0px;
+}
+
+.clear:hover {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  transform: rotate(180deg);
+  cursor: pointer;
+}
+
+input {
+  width: 600px;
+  border-radius: 20px;
+  border: none;
+  font-size: var(--text-large-size);
+  text-align: center;
+  caret-color: var(--highlight-color);
+  color: var(--dark-color);
+  box-shadow: 2px 2px 20px var(--black-shadow);
+  font-family: "Montserrat Alternates", sans-serif, "Noto Sans Thai", sans-serif;
+}
