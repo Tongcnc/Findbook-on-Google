@@ -19,22 +19,22 @@
 }
 
 body {
-  padding: 100px;
-  background-image: url(https://i.pinimg.com/564x/98/9b/56/989b563051662c4ec150cf70cfea8561.jpg);
-  background-size: auto 100%;
+  padding: 80px;
+  background-image: url(https://daviddoran.co.uk/content/uploads/2022/04/Sommerro_DavidDoran_Artwork_2_1800px.jpg.webp);
+  background-size: 100%;
   font-family: "Montserrat Alternates", sans-serif, "Noto Sans Thai", sans-serif;
 }
 
 .App {
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   align-items: center;
   height: 100vh;
 }
 
 h1 {
   color: var(--secondary-color);
+  text-shadow: 0px -5px 20px var(--black-shadow);
   margin-top: 25px;
   font-size: 4rem;
 }
@@ -71,7 +71,6 @@ h1 {
 }
 
 input {
-  /* width: 100%; */
   width: 600px;
   border-radius: 20px;
   border: none;
@@ -95,7 +94,7 @@ ul {
   display: grid;
   grid-template-columns: repeat(4, 200px);
   grid-template-rows: repeat(4, 250px);
-  gap: 40px;
+  grid-gap: 40px;
   list-style: none;
 }
 
@@ -171,6 +170,8 @@ ul {
 }
 
 #book-image {
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   border: 4px solid var(--highlight-color);
   align-self: center;
@@ -183,7 +184,7 @@ ul {
 
 h3 {
   color: var(--primary-color);
-  font-size: 12px;
+  font-size: 10px;
   margin-top: 15px;
 }
 

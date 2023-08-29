@@ -12,13 +12,13 @@ function App() {
     try {
       setLoading(true);
       const response = await axios.get(
-        `https://www.googleapis.com/books/v1/volumes?q=${input}`
+        `https://www.googleapis.com/books/v1/volumes?q=${input}&maxResults=12`
       );
       setDisplayText(response.data.items);
+      setLoading(false);
     } catch (error) {
       console.error("An error occurred while fetching data:", error);
       setDisplayText([]);
-    } finally {
       setLoading(false);
     }
   };
@@ -37,7 +37,7 @@ function App() {
     if (inputText.length >= 2) {
       searchBooks(inputText);
     } else {
-      setDisplayText([]);
+      clearText();
     }
   }, [inputText]);
 
@@ -68,27 +68,37 @@ function App() {
           {display.map((book, index) => (
             <div key={index} className="list-item">
               <li className="coverBook">
-                {book.volumeInfo.title.slice(0, 25)}
+                {book.volumeInfo.title
+                  ? book.volumeInfo.title.slice(0, 25)
+                  : ""}
               </li>
               <div className="line-container">
                 <div className="line"></div>
                 <div className="line"></div>
               </div>
               <li className="insideBook">
-                <img
-                  src={
-                    book.volumeInfo.imageLinks.smallThumbnail ||
-                    "fallback-image-url"
-                  }
-                  width="100px"
-                  height="100px"
-                  id="book-image"
-                  alt="Book Thumbnail"
-                />
+                {book.volumeInfo.imageLinks &&
+                book.volumeInfo.imageLinks.smallThumbnail ? (
+                  <img
+                    src={book.volumeInfo.imageLinks.smallThumbnail}
+                    id="book-image"
+                    alt="Book Thumbnail"
+                  />
+                ) : (
+                  <img
+                    src="https://static.vecteezy.com/system/resources/previews/017/173/007/original/can-not-load-corrupted-image-concept-illustration-flat-design-eps10-modern-graphic-element-for-landing-page-empty-state-ui-infographic-icon-vector.jpg"
+                    id="book-image"
+                    alt="Fallback Thumbnail"
+                  />
+                )}
               </li>
               <div className="bookDown">
                 <li className="insideBook">
-                  <h3>{book.volumeInfo.title.slice(0, 25)}</h3>
+                  <h3>
+                    {book.volumeInfo.title
+                      ? book.volumeInfo.title.slice(0, 25)
+                      : ""}
+                  </h3>
                 </li>
                 <div className="insideBook" id="container">
                   <li className="insideBook box" id="icon">
@@ -113,11 +123,15 @@ function App() {
                   <li className="insideBook box">{book.volumeInfo.language}</li>
                 </div>
                 <li className="insideBook">
-                  {book.volumeInfo.description.slice(0, 80)}...
+                  {book.volumeInfo.description
+                    ? book.volumeInfo.description.slice(0, 80) + "..."
+                    : "ไม่มีคำบรรยาย"}
+                  <br />
+                  {"... "}
                 </li>
                 <li className="insideBook" id="authors">
                   <span className="typing-text">
-                    by {book.volumeInfo.authors[0]}
+                    by {book.volumeInfo.authors && book.volumeInfo.authors[0]}
                   </span>
                 </li>
               </div>
