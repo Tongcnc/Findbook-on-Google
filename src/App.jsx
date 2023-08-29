@@ -7,18 +7,29 @@ function App() {
   const [display, setDisplayText] = useState([]);
   const [inputText, setInputText] = useState("");
   const [loading, setLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [isPageLoading, setPageLoading] = useState(false);
+  const [totalPages, setTotalPages] = useState(1);
+  const booksPerPage = 12;
+
+  const calculateTotalPages = (totalItems) => {
+    return Math.ceil(totalItems / booksPerPage);
+  };
 
   const searchBooks = async (input) => {
     try {
       setLoading(true);
+      const startIndex = (currentPage - 1) * booksPerPage;
       const response = await axios.get(
-        `https://www.googleapis.com/books/v1/volumes?q=${input}&maxResults=12`
+        `https://www.googleapis.com/books/v1/volumes?q=${input}&startIndex=${startIndex}&maxResults=${booksPerPage}`
       );
       setDisplayText(response.data.items);
+      setTotalPages(calculateTotalPages(response.data.totalItems));
       setLoading(false);
     } catch (error) {
       console.error("An error occurred while fetching data:", error);
       setDisplayText([]);
+      setTotalPages(1); // รีเซ็ตหน้าเป็น 1 หน้า
       setLoading(false);
     }
   };
@@ -33,6 +44,12 @@ function App() {
     setDisplayText([]);
   };
 
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    setPageLoading(true);
+    searchBooks(inputText);
+  };
+
   useEffect(() => {
     if (inputText.length >= 2) {
       searchBooks(inputText);
@@ -40,6 +57,12 @@ function App() {
       clearText();
     }
   }, [inputText]);
+
+  useEffect(() => {
+    if (isPageLoading) {
+      setPageLoading(false);
+    }
+  }, [isPageLoading]);
 
   return (
     <div className="App">
@@ -123,15 +146,22 @@ function App() {
                   <li className="insideBook box">{book.volumeInfo.language}</li>
                 </div>
                 <li className="insideBook">
-                  {book.volumeInfo.description
-                    ? book.volumeInfo.description.slice(0, 80) + "..."
-                    : "ไม่มีคำบรรยาย"}
-                  <br />
-                  {"... "}
+                  {book.volumeInfo.description ? (
+                    book.volumeInfo.description.slice(0, 80) + "..."
+                  ) : (
+                    <>
+                      ไม่มีคำบรรยาย
+                      <br />
+                      ...
+                    </>
+                  )}
                 </li>
                 <li className="insideBook" id="authors">
                   <span className="typing-text">
-                    by {book.volumeInfo.authors && book.volumeInfo.authors[0]}
+                    by{" "}
+                    {book.volumeInfo.authors
+                      ? book.volumeInfo.authors[0]
+                      : "ผู้เขียน"}
                   </span>
                 </li>
               </div>
@@ -139,6 +169,17 @@ function App() {
           ))}
         </ul>
       )}
+      <div className="pagination">
+        {Array.from({ length: totalPages }, (_, i) => (
+          <button
+            key={i}
+            onClick={() => handlePageChange(i + 1)}
+            className={currentPage === i + 1 ? "active" : ""}
+          >
+            {i + 1}
+          </button>
+        ))}
+      </div>
     </div>
   );
 }

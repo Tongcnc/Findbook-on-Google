@@ -240,6 +240,29 @@ ul .list-item:hover {
   z-index: 99;
 }
 
+/* Pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination button {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  margin: 0 5px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.pagination button.active {
+  background: var(--secondary-color);
+  color: var(--primary-color);
+}
+
 @keyframes shake {
   0%,
   100% {
