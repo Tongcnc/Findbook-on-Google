@@ -16,7 +16,7 @@ function App() {
   const [isPageLoading, setPageLoading] = useState(false);
   const [totalPages, setTotalPages] = useState(1);
 
-  const booksPerPage = 12;
+  const booksPerPage = 8;
 
   const calculateTotalPages = (totalItems) => {
     return Math.ceil(totalItems / booksPerPage);

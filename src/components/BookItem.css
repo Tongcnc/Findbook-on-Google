@@ -2,7 +2,7 @@
 ul {
   display: grid;
   grid-template-columns: repeat(4, 200px);
-  grid-template-rows: repeat(3, 250px);
+  grid-template-rows: repeat(2, 250px);
   grid-gap: 40px;
   list-style: none;
   padding-bottom: 100px;
@@ -145,7 +145,7 @@ ul .list-item:hover {
     5px 3px 0px rgba(241, 241, 241, 0.9),
     -185px 3px 0px rgba(241, 241, 241, 0.9), 10px 6px 0px var(--main-shadow),
     -190px 6px 0px var(--main-shadow);
-  transform: rotateY(180deg) scale(2);
+  transform: rotateY(180deg) scale(1.8);
   filter: blur(0px);
   transition: 0.8s;
   z-index: 99;
@@ -190,5 +190,71 @@ ul .list-item:hover {
   100% {
     opacity: 1;
     transform: translateY(0px);
+  }
+}
+
+/* MEDIA QUERY */
+@media screen and (min-width: 390px) and (max-width: 767px) {
+  body {
+    background-size: auto;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .message-input-container,
+  .clear {
+    transform: scale(0.8);
+  }
+
+  input {
+    width: 100%;
+  }
+
+  ul {
+    grid-template-columns: repeat(2, 200px);
+    grid-template-rows: repeat(4, 250px);
+    grid-gap: 0px;
+  }
+
+  .list-item {
+    transform: scale(0.75);
+  }
+
+  ul .list-item:hover {
+    transform: rotateY(180deg) scale(1.2);
+  }
+
+  .pagination {
+    transform: scale(0.75);
+    margin: 25px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  body {
+    background-size: auto;
+  }
+
+  h1 {
+    font-size: 3rem;
+  }
+
+  .clear {
+    transform: scale(0.8);
+  }
+
+  input {
+    width: 95%;
+  }
+
+  ul {
+    grid-template-columns: repeat(3, 200px);
+    grid-template-rows: repeat(3, 250px);
+  }
+
+  ul .list-item:hover {
+    transform: rotateY(180deg) scale(1.5);
   }
 }

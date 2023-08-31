@@ -19,6 +19,7 @@
   box-shadow: 2px 2px 20px var(--black-shadow);
   transition: 0.8s;
   padding: 0px;
+  aspect-ratio: 1;
 }
 
 .clear:hover {
