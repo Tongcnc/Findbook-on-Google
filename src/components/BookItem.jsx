@@ -1,6 +1,4 @@
 // BookItem.js
-import React from "react";
-
 function BookItem({ book }) {
   return (
     <div className="list-item">
@@ -35,14 +33,18 @@ function BookItem({ book }) {
         </li>
         <div className="insideBook" id="container">
           <li className="insideBook box" id="icon">
-            <a href={book.saleInfo.buyLink} target="_blank" rel="noreferrer">
-              <img
-                src="https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../releases/preview/2018/png/iconmonstr-link-thin.png&r=255&g=255&b=255"
-                alt="External Link"
-                width="5px"
-                height="5px"
-              />
-            </a>
+            {book.saleInfo.buyLink ? (
+              <a href={book.saleInfo.buyLink} target="_blank" rel="noreferrer">
+                <img
+                  src="https://iconmonstr.com/wp-content/g/gd/makefg.php?i=../releases/preview/2018/png/iconmonstr-link-thin.png&r=255&g=255&b=255"
+                  alt="External Link"
+                  width="5px"
+                  height="5px"
+                />
+              </a>
+            ) : (
+              <span className="noLink">X</span>
+            )}
           </li>
           <li className="insideBook box">
             {book.volumeInfo.categories ? book.volumeInfo.categories : "none"}

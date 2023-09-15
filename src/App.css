@@ -19,7 +19,9 @@
 }
 
 body {
-  padding: 60px;
+  width: screen;
+  height: screen;
+  padding: 40px;
   background-image: url(https://daviddoran.co.uk/content/uploads/2022/04/Sommerro_DavidDoran_Artwork_2_1800px.jpg.webp);
   background-size: 100%;
   font-family: "Montserrat Alternates", sans-serif, "Noto Sans Thai", sans-serif;
@@ -29,7 +31,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
+  height: 100%;
 }
 
 h1 {

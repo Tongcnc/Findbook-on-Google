@@ -145,7 +145,7 @@ ul .list-item:hover {
     5px 3px 0px rgba(241, 241, 241, 0.9),
     -185px 3px 0px rgba(241, 241, 241, 0.9), 10px 6px 0px var(--main-shadow),
     -190px 6px 0px var(--main-shadow);
-  transform: rotateY(180deg) scale(1.8);
+  transform: rotateY(180deg) scale(1.6);
   filter: blur(0px);
   transition: 0.8s;
   z-index: 99;

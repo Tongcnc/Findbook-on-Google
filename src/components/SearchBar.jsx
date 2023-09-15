@@ -1,5 +1,4 @@
 // SearchBar.js
-import React from "react";
 import { DebounceInput } from "react-debounce-input";
 
 function SearchBar({ value, onChange, onClear }) {

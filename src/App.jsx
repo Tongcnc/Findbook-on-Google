@@ -90,9 +90,12 @@ function App() {
     <div className="App">
       <h1 className="app-title">Find a Book &#128064;</h1>
       <SearchBar value={inputText} onChange={handlerText} onClear={clearText} />
+
       {/* Pagination */}
       <div className="pagination">
-        <button onClick={handlePrevPage}>&lt;</button>
+        {inputText && !loading && (
+          <button onClick={handlePrevPage}>&lt;</button>
+        )}
         {Array.from({ length: Math.min(totalPages, 10) }, (_, i) => (
           <PaginationButton
             key={i}
@@ -101,7 +104,9 @@ function App() {
             onClick={handlePageChange}
           />
         ))}
-        <button onClick={handleNextPage}>&gt;</button>
+        {inputText && !loading && (
+          <button onClick={handleNextPage}>&gt;</button>
+        )}
       </div>
       {/* Status */}
       {loading ? (

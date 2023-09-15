@@ -40,3 +40,7 @@ input {
   box-shadow: 2px 2px 20px var(--black-shadow);
   font-family: "Montserrat Alternates", sans-serif, "Noto Sans Thai", sans-serif;
 }
+
+input:hover {
+  border: 2px solid var(--primary-color);
+}
