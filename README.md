@@ -1,8 +1,14 @@
-# React + Vite
+# Find a books
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+With our user-friendly search feature, you can effortlessly find the books in simply enter keywords, titles, or authors, and let our website do the rest, we provide direct links to Google Play
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**Client:** React, CSS
+
+
+
+## Demo
+
+visit https://find-a-book-gg.netlify.app to see it in action!
+
